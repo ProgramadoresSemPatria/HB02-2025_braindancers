@@ -3,6 +3,7 @@ module github.com/ProgramadoresSemPatria/HB02-2025_braindancers
 go 1.24.5
 
 require (
+	github.com/google/uuid v1.6.0
 	github.com/spf13/viper v1.20.1
 	github.com/subosito/gotenv v1.6.0
 	gorm.io/driver/postgres v1.6.0
@@ -18,7 +19,6 @@ require (
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
