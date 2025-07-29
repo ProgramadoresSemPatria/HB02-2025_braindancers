@@ -1,0 +1,47 @@
+services:
+  feynman:
+    container_name: feynman
+    build:
+      context: .
+      ports:
+        - "9090:9090"
+      env_file:
+        - .env
+      depends_on:
+        postgres:
+          condition: service_started
+      networs:
+        - app-network
+
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresDB:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: padmin
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+
+  volumes:
+    postgresDB:
+
+
+  networks:
+    app-network:
+      driver: bridge
