@@ -7,7 +7,9 @@ import (
 	"gorm.io/gorm"
 )
 
+
 type InpuStruct struct {
+type RegisterInput struct {
 	Name     string `json:"name" binding:"required"`
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
@@ -47,6 +49,11 @@ type Chat struct {
 
 type ChatInput struct {
 	Title string `json:"title" binding:"required"`
+	Name      string    `json:"name" gorm:"not null"`
+	Email     string    `json:"email" gorm:"not null"`
+	Password  string    `json:"password" gorm:"not null"`
+	UpdatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
+	CreatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }
 
 func FilteredResponse(user User) UserResponse {
