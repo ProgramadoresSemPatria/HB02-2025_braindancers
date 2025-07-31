@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type InpuStruct struct {
+type RegisterInput struct {
 	Name     string `json:"name" binding:"required"`
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
@@ -28,11 +28,11 @@ type UserResponse struct {
 
 type User struct {
 	ID        uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;"`
-	Name      string    `json:"name"`
-	Email     string    `json:"email"`
-	Password  string    `json:"password"`
-	UpdatedAt time.Time `json:"created_at"`
-	CreatedAt time.Time `json:"updated_at"`
+	Name      string    `json:"name" gorm:"not null"`
+	Email     string    `json:"email" gorm:"not null"`
+	Password  string    `json:"password" gorm:"not null"`
+	UpdatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
+	CreatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }
 
 func FilteredResponse(user User) UserResponse {
