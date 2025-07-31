@@ -11,4 +11,5 @@ func RunMigration(db *gorm.DB) {
 
 func CreateTables(db *gorm.DB) {
 	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Chat{})
 }

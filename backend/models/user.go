@@ -7,6 +7,8 @@ import (
 	"gorm.io/gorm"
 )
 
+
+type InpuStruct struct {
 type RegisterInput struct {
 	Name     string `json:"name" binding:"required"`
 	Email    string `json:"email" binding:"required"`
@@ -28,6 +30,25 @@ type UserResponse struct {
 
 type User struct {
 	ID        uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;"`
+	Name      string    `json:"name"`
+	Email     string    `json:"email"`
+	Password  string    `json:"password"`
+	UpdatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"updated_at"`
+}
+
+type Chat struct {
+	ID           uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;"`
+	Title        string    `json:"title" gorm:"not null"`
+	LastActivity time.Time `json:"last_activity"`
+	UserID       uuid.UUID `json:"user_id" gorm:"type:uuid;not null;index"`
+	User         User      `json:"user" gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	UpdatedAt    time.Time `json:"updated_at" gorm:"autoCreateTime"`
+	CreatedAt    time.Time `json:"created_at" gorm:"autoUpdateTime"`
+}
+
+type ChatInput struct {
+	Title string `json:"title" binding:"required"`
 	Name      string    `json:"name" gorm:"not null"`
 	Email     string    `json:"email" gorm:"not null"`
 	Password  string    `json:"password" gorm:"not null"`

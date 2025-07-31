@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 	"time"
-
 	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/internal/config"
 	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/internal/storage/connection"
 	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/internal/storage/migrations"
@@ -39,6 +38,7 @@ func main() {
 		c.Next()
 	})
 
+
 	corsOrigin := os.Getenv("CORS")
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{corsOrigin},
@@ -48,6 +48,7 @@ func main() {
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))
+
 
 	fmt.Println("Listening on Port", port)
 	http.ListenAndServe(":"+port, r)
