@@ -7,8 +7,12 @@ import (
 	"gorm.io/gorm"
 )
 
-
 type InpuStruct struct {
+	Name     string `json:"name" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
 type RegisterInput struct {
 	Name     string `json:"name" binding:"required"`
 	Email    string `json:"email" binding:"required"`
@@ -35,25 +39,6 @@ type User struct {
 	Password  string    `json:"password"`
 	UpdatedAt time.Time `json:"created_at"`
 	CreatedAt time.Time `json:"updated_at"`
-}
-
-type Chat struct {
-	ID           uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;"`
-	Title        string    `json:"title" gorm:"not null"`
-	LastActivity time.Time `json:"last_activity"`
-	UserID       uuid.UUID `json:"user_id" gorm:"type:uuid;not null;index"`
-	User         User      `json:"user" gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
-	UpdatedAt    time.Time `json:"updated_at" gorm:"autoCreateTime"`
-	CreatedAt    time.Time `json:"created_at" gorm:"autoUpdateTime"`
-}
-
-type ChatInput struct {
-	Title string `json:"title" binding:"required"`
-	Name      string    `json:"name" gorm:"not null"`
-	Email     string    `json:"email" gorm:"not null"`
-	Password  string    `json:"password" gorm:"not null"`
-	UpdatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
-	CreatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }
 
 func FilteredResponse(user User) UserResponse {
