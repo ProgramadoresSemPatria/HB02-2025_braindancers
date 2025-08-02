@@ -58,6 +58,10 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	uploadController := controlers.NewUploadController(visionService, geminiService, geminiAPIKey)
+
+	router := gin.Default()
+	router.POST("/upload", uploadController.HandleUpload)
 
 	fmt.Println("Listening on Port", port)
 	http.ListenAndServe(":"+port, r)
