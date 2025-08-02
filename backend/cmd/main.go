@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"time"
 
@@ -63,9 +62,8 @@ func main() {
 
 	uploadController := controlers.NewUploadController(visionService, geminiService, geminiAPIKey)
 
-	router := gin.Default()
-	router.POST("/upload", uploadController.HandleUpload)
+	r.POST("/upload", uploadController.HandleUpload)
 
 	fmt.Println("Listening on Port", port)
-	http.ListenAndServe(":"+port, r)
+	r.Run(":" + port)
 }
