@@ -3,8 +3,6 @@ module github.com/ProgramadoresSemPatria/HB02-2025_braindancers
 go 1.24.5
 
 require (
-	cloud.google.com/go/vision v1.2.0
-	cloud.google.com/go/vision/v2 v2.9.2
 	github.com/gin-contrib/cors v1.7.6
 	github.com/gin-gonic/gin v1.10.1
 	github.com/golang-jwt/jwt v3.2.2+incompatible
@@ -16,7 +14,6 @@ require (
 	github.com/subosito/gotenv v1.6.0
 	golang.org/x/crypto v0.40.0
 	google.golang.org/api v0.215.0
-	google.golang.org/genproto v0.0.0-20241118233622-e639e219e697
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/driver/sqlite v1.6.0
 	gorm.io/gorm v1.30.1
