@@ -40,9 +40,8 @@ const ResultPage: React.FC = () => {
     <main className="min-h-screen bg-gray-50">
       <motion.div
         initial={{ y: 30, scale: 1, opacity: 0.7 }}
-        whileInView={{ y: 0, scale: 1, opacity: 1 }}
+        animate={{ y: 0, scale: 1, opacity: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
       >
         <button
