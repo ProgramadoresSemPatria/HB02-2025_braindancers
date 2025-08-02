@@ -3,14 +3,17 @@ import { useI18n } from '../contexts/i18nContext'
 import { useNavigate } from 'react-router-dom'
 import ImageUpload from '../components/ImageUpload'
 import LoadingSpinner from '../components/LoadSpinner'
-import type { AnalysisResult } from '../types/ai-response'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useImage } from '../contexts/ImageContext'
+import { useAPIResponse } from '../contexts/APIResponseContext'
 
 const UploadPage: React.FC = () => {
   const { t } = useI18n()
   const navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  //const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  const { setResult } = useAPIResponse()
+  const { image: selectedImage, setImage: setSelectedImage } = useImage()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -40,8 +43,11 @@ const UploadPage: React.FC = () => {
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`)
       }
-      const resultData: AnalysisResult = await response.json()
+      const resultData = await response.json()
+      setResult(resultData)
       navigate('/result', { state: { result: resultData } })
+      console.log('resultData', resultData)
+
     } catch (err) {
       console.error(err)
       setError(t.errors.uploadError)
@@ -55,9 +61,8 @@ const UploadPage: React.FC = () => {
 
       <motion.div
         initial={{ y: 30, scale: 1, opacity: 0.7 }}
-        whileInView={{ y: 0, scale: 1, opacity: 1 }}
-        transition={{ duration: .8, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ y: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center mb-12">

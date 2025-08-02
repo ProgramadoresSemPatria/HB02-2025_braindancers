@@ -10,9 +10,8 @@ export function Hero() {
     <section>
       <motion.div
         initial={{ x: 30, scale: 1, opacity: 0.7 }}
-        whileInView={{ x: 0, scale: 1, opacity: 1 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ x: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         className="relative overflow-hidden bg-white"
       >
         <div className="absolute inset-0 "></div>
