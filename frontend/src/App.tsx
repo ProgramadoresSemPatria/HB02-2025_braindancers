@@ -1,14 +1,18 @@
 import { I18nProvider } from './contexts/i18nContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home } from './pages/Home'
+import HomePage from './pages/Home'
+import ResultPage from './pages/ResultPage'
+import Header from './components/Header'
 
 function App() {
   return (
     <BrowserRouter>
       <I18nProvider>
-       <Routes>
-          <Route path="/" element={<Home/>}/>
-       </Routes>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/result" element={<ResultPage />} />
+        </Routes>
       </I18nProvider>
     </BrowserRouter>
   )
