@@ -1,29 +1,40 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useI18n } from '../contexts/i18nContext'
-import { useLocation, useNavigate } from 'react-router-dom'
-import type { AnalysisResult } from '../types/ai-response'
+import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Palette, Shirt, Lightbulb, RotateCcw } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useAPIResponse } from '../contexts/APIResponseContext'
+import { useImage } from '../contexts/ImageContext'
+import { getColorNames } from '../utils/getColorInfo'
 
 const ResultPage: React.FC = () => {
   const { t } = useI18n()
-  const location = useLocation()
+  const { result } = useAPIResponse()
+  const { image } = useImage()
+  const [colorNames, setColorNames] = useState<string[]>([])
+
   const navigate = useNavigate()
-
-  const result = location.state?.result as AnalysisResult
-
-  if (!result) {
-    navigate('/')
-    return null
-  }
 
   const handleTryAgain = () => {
     navigate('/')
   }
-
+  console.log('result', result)
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+
+    const fetchColorNames = async () => {
+      if (result?.colors) {
+        try {
+          const names = await getColorNames(result.colors)
+          setColorNames(names)
+        } catch (err) {
+          console.error('Erro ao buscar nomes das cores', err)
+        }
+      }
+    }
+
+    fetchColorNames()
+  }, [result?.colors])
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -53,7 +64,7 @@ const ResultPage: React.FC = () => {
               </div>
               <div className="p-6">
                 <img
-                  src={result.imageUrl}
+                  src={image ? URL.createObjectURL(image) : undefined}
                   alt={t.result.yourOutfit}
                   className="w-full h-64 sm:h-80 object-cover rounded-lg"
                 />
@@ -66,7 +77,7 @@ const ResultPage: React.FC = () => {
                 <span>{t.result.detectedItems}</span>
               </h3>
               <div className="space-y-3">
-                {result.detectedItems.map((item, index) => (
+                {result?.detectedItems?.map((item, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
@@ -91,21 +102,19 @@ const ResultPage: React.FC = () => {
                 <span>{t.result.colors}</span>
               </h3>
               <div className="space-y-3">
-                {result.colors.map((color, index) => (
+                {result?.colors?.map((color, index) => (
                   <div
                     key={index}
                     className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
                   >
                     <div
                       className="w-8 h-8 rounded-full border-2 border-white shadow-md"
-                      style={{ backgroundColor: color.hex }}
+                      style={{ backgroundColor: color }}
                     />
                     <div className="flex-1">
-                      <p className="font-medium text-gray-900">{color.name}</p>
-                      <p className="text-sm text-gray-500">{color.hex}</p>
-                    </div>
-                    <div className="text-sm font-medium text-gray-600">
-                      {color.percentage}%
+                      <p className="font-medium text-gray-900">
+                        {colorNames[index] || '...'}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -128,7 +137,7 @@ const ResultPage: React.FC = () => {
                     {t.result.suggestion}
                   </h3>
                   <p className="text-gray-700 leading-relaxed text-base">
-                    {result.styleTip.suggestion}
+                    {result?.suggestion}
                   </p>
                 </div>
 
@@ -137,7 +146,7 @@ const ResultPage: React.FC = () => {
                     {t.result.why}
                   </h3>
                   <p className="text-gray-700 leading-relaxed text-base">
-                    {result.styleTip.why}
+                    {result?.why}
                   </p>
                 </div>
 
