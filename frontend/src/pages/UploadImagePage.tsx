@@ -33,39 +33,22 @@ const UploadPage: React.FC = () => {
     try {
       const formData = new FormData()
       formData.append('image', selectedImage)
-
-      // Mock API call
-      const response = await new Promise<AnalysisResult>((resolve) => {
-        setTimeout(() => {
-          resolve({
-            detectedItems: [
-              { name: 'White T-shirt', confidence: 0.95, category: 'Top' },
-              { name: 'Blue Jeans', confidence: 0.88, category: 'Bottom' },
-              { name: 'Sneakers', confidence: 0.92, category: 'Footwear' },
-            ],
-            colors: [
-              { name: 'White', hex: '#FFFFFF', percentage: 45 },
-              { name: 'Blue', hex: '#4A90E2', percentage: 35 },
-              { name: 'Black', hex: '#000000', percentage: 20 },
-            ],
-            styleTip: {
-              suggestion:
-                'This classic casual look is perfect for everyday wear! Consider adding a denim jacket or blazer for a more polished appearance.',
-              why: 'The combination of white and blue creates a clean, timeless aesthetic that works well for most body types and occasions. The neutral palette makes it easy to accessorize.',
-            },
-            imageUrl: URL.createObjectURL(selectedImage),
-          })
-        }, 2000)
+      const response = await fetch('http://localhost:9090/upload', {
+        method: 'POST',
+        body: formData,
       })
-
-      navigate('/result', { state: { result: response } })
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`)
+      }
+      const resultData: AnalysisResult = await response.json()
+      navigate('/result', { state: { result: resultData } })
     } catch (err) {
+      console.error(err)
       setError(t.errors.uploadError)
     } finally {
       setIsLoading(false)
     }
   }
-
   return (
     <main className="min-h-screen bg-white py-24 flex flex-col justify-center items-center">
       {isLoading && <LoadingSpinner />}
