@@ -6,10 +6,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/models"
 	"github.com/google/generative-ai-go/genai"
 	"google.golang.org/api/option"
-
-	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/models"
 )
 
 type GeminiService struct{}
@@ -23,7 +22,6 @@ func (s *GeminiService) GetFashionTip(ctx context.Context, tags []string, colors
 	if err != nil {
 		return nil, fmt.Errorf("Failed to create gemini client: %w", err)
 	}
-
 	defer client.Close()
 
 	model := client.GenerativeModel("gemini-1.5-pro-latest")
@@ -44,6 +42,7 @@ func (s *GeminiService) GetFashionTip(ctx context.Context, tags []string, colors
 	if strings.HasPrefix(jsonString, "```json") {
 		jsonString = strings.TrimPrefix(jsonString, "```json")
 		jsonString = strings.TrimSuffix(jsonString, "```")
+		jsonString = strings.TrimSpace(jsonString)
 	}
 
 	var suggestion models.GeminiSugestion

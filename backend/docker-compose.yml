@@ -7,6 +7,10 @@ services:
       - "9090:9090"
     env_file:
       - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gen-lang.json
+    volumes:
+      - ./gen-lang.json:/app/gen-lang.json
     depends_on:
       postgres:
         condition: service_healthy
