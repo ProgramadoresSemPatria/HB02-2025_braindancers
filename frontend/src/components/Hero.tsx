@@ -1,13 +1,21 @@
+import { Link } from 'react-router-dom'
 import { useI18n } from '../contexts/i18nContext'
 import { Camera, Sparkles, ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export function Hero() {
   const { t } = useI18n()
 
   return (
     <section>
-      <div className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-60"></div>
+      <motion.div
+        initial={{ x: 30, scale: 1, opacity: 0.7 }}
+        whileInView={{ x: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="relative overflow-hidden bg-white"
+      >
+        <div className="absolute inset-0 "></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
           <div className="text-center">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 mb-6 tracking-tight">
@@ -19,22 +27,26 @@ export function Hero() {
               {t.home.description}
             </p>
 
-            <button
-              onClick={() =>
-                document
-                  .getElementById('upload-section')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-              className="inline-flex items-center space-x-3 px-8 py-4 cursor-pointer bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
-            >
-              <Camera className="h-5 w-5" />
-              <span>{t.home.cta}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
+            <Link to="/upload">
+              <button
+                type="button"
+                className="inline-flex items-center space-x-3 px-8 py-4 cursor-pointer bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
+              >
+                <Camera className="h-5 w-5" />
+                <span>{t.home.cta}</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </Link>
           </div>
         </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-10">
+      </motion.div>
+      <motion.div
+        initial={{ y: 30, scale: 1, opacity: 0.7 }}
+        whileInView={{ y: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="text-center">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -72,7 +84,7 @@ export function Hero() {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

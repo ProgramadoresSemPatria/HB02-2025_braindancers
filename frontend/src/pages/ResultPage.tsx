@@ -1,14 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useI18n } from '../contexts/i18nContext'
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { AnalysisResult } from '../types/ai-response'
-import {
-  ArrowLeft,
-  Palette,
-  Shirt,
-  Lightbulb,
-  RotateCcw,
-} from 'lucide-react'
+import { ArrowLeft, Palette, Shirt, Lightbulb, RotateCcw } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const ResultPage: React.FC = () => {
   const { t } = useI18n()
@@ -26,9 +21,19 @@ const ResultPage: React.FC = () => {
     navigate('/')
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main className="min-h-screen bg-gray-50">
+      <motion.div
+        initial={{ y: 30, scale: 1, opacity: 0.7 }}
+        whileInView={{ y: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+      >
         <button
           onClick={() => navigate('/')}
           className="cursor-pointer inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
@@ -139,7 +144,7 @@ const ResultPage: React.FC = () => {
                 <div className="border-t border-gray-100 pt-6">
                   <button
                     onClick={handleTryAgain}
-                    className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
+                    className="w-full cursor-pointer flex items-center justify-center space-x-3 px-6 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
                   >
                     <RotateCcw className="h-5 w-5" />
                     <span>{t.result.tryAgain}</span>
@@ -163,8 +168,8 @@ const ResultPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </main>
   )
 }
 
