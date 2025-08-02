@@ -1,18 +1,17 @@
 services:
   feynman:
-    container_name: feynman
+    container_name: vestai
     build:
       context: .
-      ports:
-        - "9090:9090"
-      env_file:
-        - .env
-      depends_on:
-        postgres:
-          condition: service_started
-      networs:
-        - app-network
-
+    ports:
+      - "9090:9090"
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
 
   postgres:
     image: postgres:latest
@@ -23,25 +22,29 @@ services:
       - postgresDB:/var/lib/postgresql/data
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - app-network
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: padmin
+    container_name: pgadmin
     env_file:
       - .env
     ports:
-      - "8080:8080"
+      - "8080:80"
     depends_on:
       - postgres
     networks:
-      - app_network
+      - app-network
 
-  volumes:
-    postgresDB:
+volumes:
+  postgresDB:
 
-
-  networks:
-    app-network:
-      driver: bridge
+networks:
+  app-network:
+    driver: bridge
