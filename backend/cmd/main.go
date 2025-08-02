@@ -32,6 +32,15 @@ func main() {
 
 	migrations.RunMigration(db)
 
+	geminiAPIKey := os.Getenv("GEMINI_API_KEY")
+	if geminiAPIKey == "" {
+
+		log.Fatal("GEMINI_API_KEY environment variable not set.")
+	}
+
+	visionService := services.NewVisionService()
+	geminiService := services.NewGeminiService()
+
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
 		c.Set("db", db)
