@@ -41,7 +41,6 @@ func main() {
 		log.Fatal("GEMINI_API_KEY environment variable not set.")
 	}
 
-	visionService := services.NewVisionService()
 	geminiService := services.NewGeminiService()
 
 	r := gin.Default()
@@ -60,7 +59,7 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	uploadController := controlers.NewUploadController(visionService, geminiService, geminiAPIKey)
+	uploadController := controlers.NewUploadController(geminiService, geminiAPIKey)
 
 	r.POST("/upload", uploadController.HandleUpload)
 

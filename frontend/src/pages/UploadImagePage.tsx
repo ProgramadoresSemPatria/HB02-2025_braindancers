@@ -47,6 +47,7 @@ const UploadPage: React.FC = () => {
       setResult(resultData)
       navigate('/result', { state: { result: resultData } })
       console.log('resultData', resultData)
+
     } catch (err) {
       console.error(err)
       setError(t.errors.uploadError)
@@ -54,7 +55,6 @@ const UploadPage: React.FC = () => {
       setIsLoading(false)
     }
   }
-
   return (
     <main className="min-h-screen bg-white py-24 flex flex-col justify-center items-center">
       {isLoading && <LoadingSpinner />}
