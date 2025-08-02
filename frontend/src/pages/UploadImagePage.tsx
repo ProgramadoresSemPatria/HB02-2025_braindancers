@@ -3,14 +3,17 @@ import { useI18n } from '../contexts/i18nContext'
 import { useNavigate } from 'react-router-dom'
 import ImageUpload from '../components/ImageUpload'
 import LoadingSpinner from '../components/LoadSpinner'
-import type { AnalysisResult } from '../types/ai-response'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useImage } from '../contexts/ImageContext'
+import { useAPIResponse } from '../contexts/APIResponseContext'
 
 const UploadPage: React.FC = () => {
   const { t } = useI18n()
   const navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  //const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  const { setResult } = useAPIResponse()
+  const { image: selectedImage, setImage: setSelectedImage } = useImage()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -33,48 +36,33 @@ const UploadPage: React.FC = () => {
     try {
       const formData = new FormData()
       formData.append('image', selectedImage)
-
-      // Mock API call
-      const response = await new Promise<AnalysisResult>((resolve) => {
-        setTimeout(() => {
-          resolve({
-            detectedItems: [
-              { name: 'White T-shirt', confidence: 0.95, category: 'Top' },
-              { name: 'Blue Jeans', confidence: 0.88, category: 'Bottom' },
-              { name: 'Sneakers', confidence: 0.92, category: 'Footwear' },
-            ],
-            colors: [
-              { name: 'White', hex: '#FFFFFF', percentage: 45 },
-              { name: 'Blue', hex: '#4A90E2', percentage: 35 },
-              { name: 'Black', hex: '#000000', percentage: 20 },
-            ],
-            styleTip: {
-              suggestion:
-                'This classic casual look is perfect for everyday wear! Consider adding a denim jacket or blazer for a more polished appearance.',
-              why: 'The combination of white and blue creates a clean, timeless aesthetic that works well for most body types and occasions. The neutral palette makes it easy to accessorize.',
-            },
-            imageUrl: URL.createObjectURL(selectedImage),
-          })
-        }, 2000)
+      const response = await fetch('http://localhost:9090/upload', {
+        method: 'POST',
+        body: formData,
       })
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`)
+      }
+      const resultData = await response.json()
+      setResult(resultData)
+      navigate('/result', { state: { result: resultData } })
+      console.log('resultData', resultData)
 
-      navigate('/result', { state: { result: response } })
     } catch (err) {
+      console.error(err)
       setError(t.errors.uploadError)
     } finally {
       setIsLoading(false)
     }
   }
-
   return (
     <main className="min-h-screen bg-white py-24 flex flex-col justify-center items-center">
       {isLoading && <LoadingSpinner />}
 
       <motion.div
         initial={{ y: 30, scale: 1, opacity: 0.7 }}
-        whileInView={{ y: 0, scale: 1, opacity: 1 }}
-        transition={{ duration: .8, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ y: 0, scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center mb-12">
