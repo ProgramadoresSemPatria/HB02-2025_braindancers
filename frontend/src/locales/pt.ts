@@ -1,39 +1,51 @@
 import type { Translations } from '../types/i18n'
 
 export const pt: Translations = {
-  nav: {
-    features: 'Recursos',
+  app: {
+    name: 'Veste AI',
+    tagline: 'Seu consultor de moda com IA',
+  },
+  home: {
+    title: 'Seu Guarda-Roupa com',
+    subtitle: 'Inteligência Artificial',
+    description: 'Envie seu look. Deixe a IA refinar seu estilo.',
+    cta: 'Experimente Agora',
+    stepsCaptureTitle: 'Capturar',
+    stepsCaptureDescription: 'Envie uma foto do look ou tire uma agora mesmo',
+    stepsAnalyzeTitle: 'Analisar',
+    stepsAnalyzeDescription: 'A IA interpreta cores, estilos e proporções',
+    stepsElevateTitle: 'Elevar',
+    stepsElevateDescription: 'Receba sugestões de estilo personalizadas',
     about: 'Sobre',
-    contact: 'Contato',
-    getStarted: 'Começar',
+    howItWorks: 'Como Funciona',
+    tryIt: 'Experimente',
+    uploadTitle: 'Pronto para Transformar seu Estilo?',
+    uploadSubtitle:
+      'Receba conselhos de moda personalizados do nosso estilista IA',
+    dragDrop: 'Arraste e solte sua imagem aqui',
+    or: 'ou',
+    browse: 'Procurar arquivo',
+    camera: 'Usar câmera',
+    getStyleTip: 'Obter Dica de Estilo',
+    loading: 'Analisando seu look...',
+    supportedFormats: 'Formatos suportados: JPG, PNG, JPEG',
   },
-  hero: {
-    title: 'Domine Qualquer Assunto\nCom Orientação da IA',
-    subtitle:
-      'Transforme conceitos complexos em compreensão clara com nossa plataforma de aprendizado alimentada por IA. Crie mapas de conhecimento, gere resumos e pratique com orientação inteligente.',
-    cta: 'Começar a Aprender',
+  errors: {
+    uploadError: 'Falha ao enviar imagem. Tente novamente.',
+    invalidFile: 'Por favor, selecione um arquivo de imagem válido.',
+    networkError: 'Erro de rede. Verifique sua conexão.',
   },
-  features: {
-    title: 'Ferramentas Inteligentes de Aprendizado',
-    quizGenerator: {
-      title: 'Gerador de Quiz',
-      description:
-        'Gere automaticamente quizzes personalizados com base nas suas anotações e progresso. Reforce a memorização com prática ativa e repetição espaçada.',
-    },
-    conceptSimplifier: {
-      title: 'Simplificador de Conceitos',
-      description:
-        'Ideias complexas são simplificadas com analogias geradas por IA, utilizando a Técnica de Feynman. Aprenda com exemplos fáceis de entender.',
-    },
-    flashcardsPlus: {
-      title: 'Flashcards Inteligentes',
-      description:
-        'Crie e revise flashcards gerados por IA, conectados ao seu material de estudo. Acompanhe seu nível de domínio e foque nos pontos fracos.',
-    },
-  },
-  footer: {
-    description:
-      'Domine qualquer assunto com ferramentas de aprendizado alimentadas por IA.',
-    copyright: '© 2024 Feynman Learning. Todos os direitos reservados.',
+  result: {
+    back: 'Voltar para o Envio',
+    yourOutfit: 'Seu Look',
+    detectedItems: 'Itens Detectados',
+    colors: 'Cores',
+    styleTip: 'Dica de Estilo',
+    suggestion: 'Nossa Sugestão',
+    why: 'Por que esse estilo?',
+    tryAgain: 'Tentar Novamente',
+    tipTitle: 'Dica de Moda',
+    tipContent:
+      'Lembre-se: confiança é seu melhor acessório! Vista o que te faz sentir confortável e fiel ao seu estilo pessoal.',
   },
 }

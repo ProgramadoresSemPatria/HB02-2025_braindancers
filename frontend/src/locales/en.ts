@@ -1,38 +1,50 @@
-import type { Translations } from "../types/i18n"
+import type { Translations } from '../types/i18n'
 
 export const en: Translations = {
-  nav: {
-    features: "Features",
-    about: "About",
-    contact: "Contact",
-    getStarted: "Get Started",
+  app: {
+    name: 'Veste AI',
+    tagline: 'Your AI Fashion Consultant',
   },
-  hero: {
-    title: "Master Any Subject\nWith AI Guidance",
-    subtitle:
-      "Transform complex concepts into clear understanding with our AI-powered learning platform. Create knowledge maps, generate summaries, and practice with intelligent guidance.",
-    cta: "Start Learning",
+  home: {
+    title: 'Your AI Wardrobe',
+    subtitle: 'Whisperer',
+    description: 'Upload your outfit. Let AI refine your look.',
+    cta: 'Try Snap & Style',
+    stepsCaptureTitle: 'Capture',
+    stepsCaptureDescription: 'Upload any outfit photo or take one instantly',
+    stepsAnalyzeTitle: 'Analyze',
+    stepsAnalyzeDescription: 'AI reads colors, styles, and proportions',
+    stepsElevateTitle: 'Elevate',
+    stepsElevateDescription: 'Get personalized styling suggestions',
+    about: 'About',
+    howItWorks: 'How it works',
+    tryIt: 'Try it now',
+    uploadTitle: 'Ready to Transform Your Style?',
+    uploadSubtitle: 'Get personalized fashion tips from our AI stylist',
+    dragDrop: 'Drag and drop your outfit here',
+    or: 'or',
+    browse: 'Browse files',
+    camera: 'Take a photo',
+    getStyleTip: 'Get Style Tip',
+    loading: 'Analyzing your outfit...',
+    supportedFormats: 'Supported formats: JPG, PNG, JPEG',
   },
-  features: {
-    title: "Intelligent Learning Tools",
-    quizGenerator: {
-      title: "Quiz Generator",
-      description:
-        "Automatically generate personalized quizzes based on your notes and progress. Enhance retention through active recall and spaced repetition.",
-    },
-    conceptSimplifier: {
-      title: "Concept Simplifier",
-      description:
-        "Complex ideas are simplified through AI-powered analogies based on the Feynman Technique. Learn difficult concepts with relatable examples.",
-    },
-    flashcardsPlus: {
-      title: "Smart Flashcards",
-      description:
-        "Create and review AI-generated flashcards linked to your study materials. Track mastery level and focus on weak areas.",
-    },
+  errors: {
+    uploadError: 'Failed to upload image. Please try again.',
+    invalidFile: 'Please select a valid image file.',
+    networkError: 'Network error. Please check your connection.',
   },
-  footer: {
-    description: "Master any subject with AI-powered learning tools.",
-    copyright: "© 2024 Feynman Learning. All rights reserved.",
+  result: {
+    back: 'Back to Upload',
+    yourOutfit: 'Your Outfit',
+    detectedItems: 'Detected Items',
+    colors: 'Colors',
+    styleTip: 'Style Tip',
+    suggestion: 'Our Suggestion',
+    why: 'Why this style?',
+    tryAgain: 'Try Again',
+    tipTitle: 'Fashion Tip',
+    tipContent:
+      'Remember that confidence is your best accessory! Wear what makes you feel comfortable and authentic to your personal style.',
   },
 }
