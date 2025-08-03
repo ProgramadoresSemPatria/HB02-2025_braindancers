@@ -59,7 +59,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           <img
             src={URL.createObjectURL(selectedImage)}
             alt="Selected outfit"
-            className="w-full h-64 sm:h-80 object-cover"
+            className="w-full max-h-96 object-contain"
           />
           <button
             onClick={onClearImage}
