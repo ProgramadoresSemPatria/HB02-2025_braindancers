@@ -6,9 +6,11 @@ import ResultPage from './pages/ResultPage'
 import ImageUploadPage from './pages/UploadImagePage'
 import Header from './components/Header'
 import { ImageProvider } from './contexts/ImageContext'
+import { ThemeProvider } from './contexts/theme/ThemeProvider'
 
 function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
       <I18nProvider>
         <APIProvider>
@@ -23,6 +25,7 @@ function App() {
         </APIProvider>
       </I18nProvider>
     </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
