@@ -1,0 +1,50 @@
+import type { Translations } from '../types/i18n'
+
+export const en: Translations = {
+  app: {
+    name: 'Veste AI',
+    tagline: 'Your AI Fashion Consultant',
+  },
+  home: {
+    title: 'Your AI Wardrobe',
+    subtitle: 'Whisperer',
+    description: 'Upload your outfit. Let AI refine your look.',
+    cta: 'Try Snap & Style',
+    stepsCaptureTitle: 'Capture',
+    stepsCaptureDescription: 'Upload any outfit photo or take one instantly',
+    stepsAnalyzeTitle: 'Analyze',
+    stepsAnalyzeDescription: 'AI reads colors, styles, and proportions',
+    stepsElevateTitle: 'Elevate',
+    stepsElevateDescription: 'Get personalized styling suggestions',
+    about: 'About',
+    howItWorks: 'How it works',
+    tryIt: 'Try it now',
+    uploadTitle: 'Ready to Transform Your Style?',
+    uploadSubtitle: 'Get personalized fashion tips from our AI stylist',
+    dragDrop: 'Drag and drop your outfit here',
+    or: 'or',
+    browse: 'Browse files',
+    camera: 'Take a photo',
+    getStyleTip: 'Get Style Tip',
+    loading: 'Analyzing your outfit...',
+    supportedFormats: 'Supported formats: JPG, PNG, JPEG',
+  },
+  errors: {
+    uploadError: 'Failed to upload image. Please try again.',
+    invalidFile: 'Please select a valid image file.',
+    networkError: 'Network error. Please check your connection.',
+  },
+  result: {
+    back: 'Back to Upload',
+    yourOutfit: 'Your Outfit',
+    detectedItems: 'Detected Items',
+    colors: 'Colors',
+    styleTip: 'Style Tip',
+    suggestion: 'Our Suggestion',
+    why: 'Why this style?',
+    tryAgain: 'Try Again',
+    tipTitle: 'Fashion Tip',
+    tipContent:
+      'Remember that confidence is your best accessory! Wear what makes you feel comfortable and authentic to your personal style.',
+  },
+}

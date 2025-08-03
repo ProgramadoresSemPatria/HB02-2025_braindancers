@@ -1,0 +1,16 @@
+services:
+  vestai:
+    container_name: vestai
+    build:
+      context: .
+    ports:
+      - "9090:9090"
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
