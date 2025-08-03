@@ -65,7 +65,7 @@ const ResultPage: React.FC = () => {
                 <img
                   src={image ? URL.createObjectURL(image) : undefined}
                   alt={t.result.yourOutfit}
-                  className="w-full h-64 sm:h-80 object-cover rounded-lg"
+                  className="w-full h-64 sm:h-80 object-contain rounded-lg"
                 />
               </div>
             </div>
@@ -76,20 +76,12 @@ const ResultPage: React.FC = () => {
                 <span>{t.result.detectedItems}</span>
               </h3>
               <div className="space-y-3">
-                {result?.detectedItems?.map((item, index) => (
+                {result?.identified_clothes?.map((item, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                   >
-                    <div>
-                      <p className="font-medium text-gray-900">{item.name}</p>
-                      <p className="text-sm text-gray-500">{item.category}</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
-                        {Math.round(item.confidence * 100)}%
-                      </div>
-                    </div>
+                    <p className="font-medium text-gray-900">{item}</p>
                   </div>
                 ))}
               </div>
