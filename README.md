@@ -1,4 +1,4 @@
-# VestAI
+# VesteAI
 
 Seu personal stylist com Inteligência Artificial. Tire uma foto do seu look e receba dicas instantâneas de como melhorá-lo!
 
@@ -70,7 +70,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
     cd backend/
     docker-compose up --build
     ```
-    O servidor backend estará rodando em `http://localhost:8080`.
+    O servidor backend estará rodando em `http://localhost:9090`.
 
 3.  **Configure e rode o Frontend:**
     ```bash
@@ -78,7 +78,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
     npm install
     npm run dev
     ```
-    A aplicação estará acessível em `http://localhost:3000` (ou outra porta indicada no terminal).
+    A aplicação estará acessível em `http://localhost:5173` (ou outra porta indicada no terminal).
 
 ---
 
