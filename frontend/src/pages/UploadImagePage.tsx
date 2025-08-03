@@ -7,11 +7,11 @@ import { Sparkles, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useImage } from '../contexts/ImageContext'
 import { useAPIResponse } from '../contexts/APIResponseContext'
+import type { APIResponse } from '../types/ai-response'
 
 const UploadPage: React.FC = () => {
   const { t } = useI18n()
   const navigate = useNavigate()
-  //const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const { setResult } = useAPIResponse()
   const { image: selectedImage, setImage: setSelectedImage } = useImage()
   const [isLoading, setIsLoading] = useState(false)
@@ -36,18 +36,25 @@ const UploadPage: React.FC = () => {
     try {
       const formData = new FormData()
       formData.append('image', selectedImage)
+
       const response = await fetch('http://localhost:9090/upload', {
         method: 'POST',
         body: formData,
       })
+
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`)
       }
-      const resultData = await response.json()
-      setResult(resultData)
-      navigate('/result', { state: { result: resultData } })
-      console.log('resultData', resultData)
 
+      const resultData: APIResponse = await response.json()
+      const uniqueColors = [...new Set(resultData.colors)]
+      const resultWithUniqueColors: APIResponse = {
+        ...resultData,
+        colors: uniqueColors,
+      }
+
+      setResult(resultWithUniqueColors)
+      navigate('/result', { state: { result: resultWithUniqueColors } })
     } catch (err) {
       console.error(err)
       setError(t.errors.uploadError)
@@ -55,6 +62,7 @@ const UploadPage: React.FC = () => {
       setIsLoading(false)
     }
   }
+
   return (
     <main className="min-h-screen bg-white py-24 flex flex-col justify-center items-center">
       {isLoading && <LoadingSpinner />}
