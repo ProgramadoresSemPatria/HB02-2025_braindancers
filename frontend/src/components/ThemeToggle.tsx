@@ -33,7 +33,7 @@ const ThemeToggle = () => {
     <div className="relative" ref={dropdownRef}>
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-10 h-10 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+        className="flex items-center justify-center w-10 h-10 text-icon-primary dark:text-dark-icon-primary hover:text-text-primary dark:hover:text-dark-text-primary transition-colors duration-200 rounded-full hover:bg-bg-secondary dark:hover:bg-dark-bg-secondary"
         title="Toggle theme"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -51,7 +51,7 @@ const ThemeToggle = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50 min-w-[80px]"
+            className="absolute right-0 top-full mt-2 bg-dropdown-bg dark:bg-dark-dropdown-bg rounded-lg shadow-lg border border-dropdown-border dark:border-dark-dropdown-border py-1 z-50 min-w-[80px]"
             initial={{ 
               opacity: 0, 
               y: -10, 
@@ -84,8 +84,8 @@ const ThemeToggle = () => {
               }}
               className={`flex items-center justify-center w-full h-10 text-sm transition-all duration-200 ease-in-out ${
                 theme === 'light' 
-                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-accent-primary dark:text-dark-accent-primary bg-accent-light dark:bg-dark-accent-light' 
+                  : 'text-icon-primary dark:text-dark-icon-primary hover:bg-bg-secondary dark:hover:bg-dark-bg-secondary'
               }`}
               title="Light mode"
               whileHover={{ scale: 1.05, x: 2 }}
@@ -101,8 +101,8 @@ const ThemeToggle = () => {
               }}
               className={`flex items-center justify-center w-full h-10 text-sm transition-all duration-200 ease-in-out ${
                 theme === 'dark' 
-                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-accent-primary dark:text-dark-accent-primary bg-accent-light dark:bg-dark-accent-light' 
+                  : 'text-icon-primary dark:text-dark-icon-primary hover:bg-bg-secondary dark:hover:bg-dark-bg-secondary'
               }`}
               title="Dark mode"
               whileHover={{ scale: 1.05, x: 2 }}

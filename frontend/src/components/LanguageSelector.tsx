@@ -13,7 +13,7 @@ export function LanguageSelector() {
   return (
     <button
       onClick={toggleLanguage}
-      className="cursor-pointer flex items-center space-x-2 text-gray-700 hover:text-gray-500 transition-colors"
+      className="cursor-pointer flex items-center space-x-2 text-text-secondary dark:text-dark-text-secondary hover:text-text-primary dark:hover:text-dark-text-primary transition-colors"
     >
       <Languages className="w-4 h-4" />
       <span className="text-sm font-medium">{language.toUpperCase()}</span>

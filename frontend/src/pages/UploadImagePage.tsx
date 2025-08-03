@@ -66,7 +66,7 @@ const UploadPage: React.FC = () => {
   }
 
   return (
-    <main className="min-h-screen bg-white py-24 flex flex-col justify-center items-center">
+    <main className="min-h-screen bg-bg-primary dark:bg-dark-bg-primary py-24 flex flex-col justify-center items-center">
       {isLoading && <LoadingSpinner />}
       <motion.div
         initial={{ y: 30, scale: 1, opacity: 0.7 }}
@@ -75,15 +75,15 @@ const UploadPage: React.FC = () => {
         className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-light text-text-primary dark:text-dark-text-primary mb-4">
             {t.home.uploadTitle}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-text-secondary dark:text-dark-text-secondary max-w-2xl mx-auto">
             {t.home.uploadSubtitle}
           </p>
         </div>
 
-        <div className="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 p-8 sm:p-12">
+        <div className="bg-bg-secondary dark:bg-dark-bg-secondary rounded-2xl shadow-sm border border-border-primary dark:border-dark-border-primary p-8 sm:p-12">
           <ImageUpload
             onImageSelect={handleImageSelect}
             selectedImage={selectedImage}
@@ -91,8 +91,8 @@ const UploadPage: React.FC = () => {
           />
 
           {error && (
-            <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-600 text-sm">{error}</p>
+            <div className="mt-6 p-4 bg-error-bg dark:bg-dark-error-bg border border-error-border dark:border-dark-error-border rounded-lg">
+              <p className="text-error-text dark:text-dark-error-text text-sm">{error}</p>
             </div>
           )}
 
@@ -101,7 +101,7 @@ const UploadPage: React.FC = () => {
               <button
                 onClick={handleSubmit}
                 disabled={isLoading}
-                className="cursor-pointer inline-flex items-center space-x-3 px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="cursor-pointer inline-flex items-center space-x-3 px-8 py-4 bg-button-primary-bg dark:bg-dark-button-primary-bg text-button-primary-text dark:text-dark-button-primary-text font-medium rounded-lg hover:bg-button-primary-hover dark:hover:bg-dark-button-primary-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Sparkles className="h-5 w-5" />
                 <span>{t.home.getStyleTip}</span>
