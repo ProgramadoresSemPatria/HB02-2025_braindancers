@@ -55,7 +55,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   if (selectedImage) {
     return (
       <div className="relative">
-        <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="relative bg-bg-primary dark:bg-dark-bg-primary rounded-2xl shadow-lg overflow-hidden">
           <img
             src={URL.createObjectURL(selectedImage)}
             alt="Selected outfit"
@@ -63,13 +63,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           />
           <button
             onClick={onClearImage}
-            className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"
+            className="absolute top-3 right-3 bg-bg-primary dark:bg-dark-bg-primary rounded-full p-2 shadow-lg hover:bg-bg-secondary dark:hover:bg-dark-bg-secondary transition-colors"
           >
-            <X className="h-4 w-4 text-gray-600" />
+            <X className="h-4 w-4 text-icon-primary dark:text-dark-icon-primary" />
           </button>
         </div>
         <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">{selectedImage.name}</p>
+          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">{selectedImage.name}</p>
         </div>
       </div>
     )
@@ -85,30 +85,30 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           relative border-2 border-dashed rounded-2xl p-8 text-center transition-all duration-200
           ${
             isDragOver
-              ? 'border-gray-400 bg-gray-50'
-              : 'border-gray-200 bg-gray-50 hover:border-gray-300'
+              ? 'border-border-accent dark:border-dark-border-accent bg-upload-area-hover dark:bg-dark-upload-area-hover'
+              : 'border-upload-area-border dark:border-dark-upload-area-border bg-upload-area-bg dark:bg-dark-upload-area-bg hover:border-border-accent dark:hover:border-dark-border-accent'
           }
         `}
       >
         <div className="flex flex-col items-center space-y-4">
-          <div className="bg-gray-100 p-4 rounded-full">
-            <Upload className="h-8 w-8 text-gray-600" />
+          <div className="bg-bg-tertiary dark:bg-dark-bg-tertiary p-4 rounded-full">
+            <Upload className="h-8 w-8 text-icon-primary dark:text-dark-icon-primary" />
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary">
               {t.home.dragDrop}
             </h3>
-            <p className="text-sm text-gray-500">{t.home.supportedFormats}</p>
+            <p className="text-sm text-text-tertiary dark:text-dark-text-tertiary">{t.home.supportedFormats}</p>
           </div>
 
           <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
             <button
               onClick={handleBrowseClick}
-              className="cursor-pointer flex items-center space-x-2 px-6 py-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+              className="cursor-pointer flex items-center space-x-2 px-6 py-3 bg-button-secondary-bg dark:bg-dark-button-secondary-bg border border-button-secondary-border dark:border-dark-button-secondary-border rounded-lg hover:bg-button-secondary-hover dark:hover:bg-dark-button-secondary-hover transition-colors"
             >
-              <ImageIcon className="h-4 w-4 text-gray-600" />
-              <span className="text-sm font-medium text-gray-700">
+              <ImageIcon className="h-4 w-4 text-icon-primary dark:text-dark-icon-primary" />
+              <span className="text-sm font-medium text-button-secondary-text dark:text-dark-button-secondary-text">
                 {t.home.browse}
               </span>
             </button>

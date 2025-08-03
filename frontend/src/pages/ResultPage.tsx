@@ -18,7 +18,13 @@ const ResultPage: React.FC = () => {
   const handleTryAgain = () => {
     navigate('/')
   }
-  console.log('result', result)
+
+  useEffect(() => {
+    if (!result) {
+      navigate('/')
+    }
+  }, [result])
+
   useEffect(() => {
     window.scrollTo(0, 0)
 
@@ -37,7 +43,7 @@ const ResultPage: React.FC = () => {
   }, [result?.colors])
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-bg-secondary dark:bg-dark-bg-secondary">
       <motion.div
         initial={{ y: 30, scale: 1, opacity: 0.7 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -46,7 +52,7 @@ const ResultPage: React.FC = () => {
       >
         <button
           onClick={() => navigate('/')}
-          className="cursor-pointer inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+          className="cursor-pointer inline-flex items-center space-x-2 text-text-secondary dark:text-dark-text-secondary hover:text-text-primary dark:hover:text-dark-text-primary mb-6 transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           <span className="text-sm font-medium">{t.result.back}</span>
@@ -54,10 +60,10 @@ const ResultPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-              <div className="p-6 border-b border-gray-100">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center space-x-3">
-                  <Shirt className="h-6 w-6 text-gray-600" />
+            <div className="bg-bg-primary dark:bg-dark-bg-primary rounded-2xl shadow-sm border border-border-primary dark:border-dark-border-primary overflow-hidden">
+              <div className="p-6 border-b border-border-primary dark:border-dark-border-primary">
+                <h2 className="text-2xl font-bold text-text-primary dark:text-dark-text-primary flex items-center space-x-3">
+                  <Shirt className="h-6 w-6 text-icon-primary dark:text-dark-icon-primary" />
                   <span>{t.result.yourOutfit}</span>
                 </h2>
               </div>
@@ -70,40 +76,40 @@ const ResultPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-                <Shirt className="h-5 w-5 text-gray-600" />
+            <div className="bg-bg-primary dark:bg-dark-bg-primary rounded-2xl shadow-sm border border-border-primary dark:border-dark-border-primary p-6">
+              <h3 className="text-xl font-semibold text-text-primary dark:text-dark-text-primary mb-4 flex items-center space-x-2">
+                <Shirt className="h-5 w-5 text-icon-primary dark:text-dark-icon-primary" />
                 <span>{t.result.detectedItems}</span>
               </h3>
               <div className="space-y-3">
                 {result?.identified_clothes?.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="flex items-center justify-between p-3 bg-bg-tertiary dark:bg-dark-bg-tertiary rounded-lg hover:bg-bg-secondary dark:hover:bg-dark-bg-secondary transition-colors"
                   >
-                    <p className="font-medium text-gray-900">{item}</p>
+                    <p className="font-medium text-text-primary dark:text-dark-text-primary">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-                <Palette className="h-5 w-5 text-gray-600" />
+            <div className="bg-bg-primary dark:bg-dark-bg-primary rounded-2xl shadow-sm border border-border-primary dark:border-dark-border-primary p-6">
+              <h3 className="text-xl font-semibold text-text-primary dark:text-dark-text-primary mb-4 flex items-center space-x-2">
+                <Palette className="h-5 w-5 text-icon-primary dark:text-dark-icon-primary" />
                 <span>{t.result.colors}</span>
               </h3>
               <div className="space-y-3">
                 {result?.colors?.map((color, index) => (
                   <div
                     key={index}
-                    className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center space-x-3 p-3 bg-bg-tertiary dark:bg-dark-bg-tertiary rounded-lg"
                   >
                     <div
-                      className="w-8 h-8 rounded-full border-2 border-white shadow-md"
+                      className="w-8 h-8 rounded-full border-2 border-bg-primary dark:border-dark-bg-primary shadow-md"
                       style={{ backgroundColor: color }}
                     />
                     <div className="flex-1">
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-text-primary dark:text-dark-text-primary">
                         {colorNames[index] || '...'}
                       </p>
                     </div>
@@ -114,9 +120,9 @@ const ResultPage: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-              <div className="bg-gray-900 p-6">
-                <h2 className="text-2xl font-bold text-white flex items-center space-x-3">
+            <div className="bg-bg-primary dark:bg-dark-bg-primary rounded-2xl shadow-sm border border-border-primary dark:border-dark-border-primary overflow-hidden">
+              <div className="bg-button-primary-bg dark:bg-dark-button-primary-bg p-6">
+                <h2 className="text-2xl font-bold text-button-primary-text dark:text-dark-button-primary-text flex items-center space-x-3">
                   <Lightbulb className="h-6 w-6" />
                   <span>{t.result.styleTip}</span>
                 </h2>
@@ -124,27 +130,27 @@ const ResultPage: React.FC = () => {
 
               <div className="p-8 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  <h3 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary mb-3">
                     {t.result.suggestion}
                   </h3>
-                  <p className="text-gray-700 leading-relaxed text-base">
+                  <p className="text-text-secondary dark:text-dark-text-secondary leading-relaxed text-base">
                     {result?.suggestion}
                   </p>
                 </div>
 
-                <div className="border-t border-gray-100 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                <div className="border-t border-border-primary dark:border-dark-border-primary pt-6">
+                  <h3 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary mb-3">
                     {t.result.why}
                   </h3>
-                  <p className="text-gray-700 leading-relaxed text-base">
+                  <p className="text-text-secondary dark:text-dark-text-secondary leading-relaxed text-base">
                     {result?.why}
                   </p>
                 </div>
 
-                <div className="border-t border-gray-100 pt-6">
+                <div className="border-t border-border-primary dark:border-dark-border-primary pt-6">
                   <button
                     onClick={handleTryAgain}
-                    className="w-full cursor-pointer flex items-center justify-center space-x-3 px-6 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
+                    className="w-full cursor-pointer flex items-center justify-center space-x-3 px-6 py-4 bg-button-primary-bg dark:bg-dark-button-primary-bg text-button-primary-text dark:text-dark-button-primary-text font-medium rounded-lg hover:bg-button-primary-hover dark:hover:bg-dark-button-primary-hover transition-all"
                   >
                     <RotateCcw className="h-5 w-5" />
                     <span>{t.result.tryAgain}</span>
@@ -153,15 +159,15 @@ const ResultPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-gray-100 rounded-2xl p-6">
+            <div className="bg-bg-tertiary dark:bg-dark-bg-tertiary rounded-2xl p-6">
               <div className="text-center space-y-3">
-                <div className="bg-white p-3 rounded-full w-fit mx-auto">
-                  <Lightbulb className="h-6 w-6 text-gray-600" />
+                <div className="bg-bg-primary dark:bg-dark-bg-primary p-3 rounded-full w-fit mx-auto">
+                  <Lightbulb className="h-6 w-6 text-icon-primary dark:text-dark-icon-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary">
                   {t.result.tipTitle}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-text-secondary dark:text-dark-text-secondary leading-relaxed">
                   {t.result.tipContent}
                 </p>
               </div>
