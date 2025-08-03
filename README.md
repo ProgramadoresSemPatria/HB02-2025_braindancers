@@ -1,4 +1,4 @@
-# VesteAI
+# Veste AI
 
 Seu personal stylist com Inteligência Artificial. Tire uma foto do seu look e receba dicas instantâneas de como melhorá-lo!
 
