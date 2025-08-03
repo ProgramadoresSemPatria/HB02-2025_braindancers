@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+// 👇 1. Import useSearchParams to read the URL
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useI18n } from '../contexts/i18nContext'
-import { useNavigate } from 'react-router-dom'
 import ImageUpload from '../components/ImageUpload'
 import LoadingSpinner from '../components/LoadSpinner'
 import { Sparkles, ArrowRight } from 'lucide-react'
@@ -16,6 +17,8 @@ const UploadPage: React.FC = () => {
   const { image: selectedImage, setImage: setSelectedImage } = useImage()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [searchParams] = useSearchParams()
+  const language = searchParams.get('lang') || 'en'
 
   const handleImageSelect = (file: File) => {
     setSelectedImage(file)
@@ -36,23 +39,21 @@ const UploadPage: React.FC = () => {
     try {
       const formData = new FormData()
       formData.append('image', selectedImage)
+      formData.append('language', language)
 
       const response = await fetch('http://localhost:9090/upload', {
         method: 'POST',
         body: formData,
       })
-
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`)
       }
-
       const resultData: APIResponse = await response.json()
       const uniqueColors = [...new Set(resultData.colors)]
       const resultWithUniqueColors: APIResponse = {
         ...resultData,
         colors: uniqueColors,
       }
-
       setResult(resultWithUniqueColors)
       navigate('/result', { state: { result: resultWithUniqueColors } })
     } catch (err) {
@@ -66,7 +67,6 @@ const UploadPage: React.FC = () => {
   return (
     <main className="min-h-screen bg-white py-24 flex flex-col justify-center items-center">
       {isLoading && <LoadingSpinner />}
-
       <motion.div
         initial={{ y: 30, scale: 1, opacity: 0.7 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}
