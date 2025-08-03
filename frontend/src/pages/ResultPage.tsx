@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useI18n } from '../contexts/i18nContext'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Palette, Shirt, Lightbulb, RotateCcw } from 'lucide-react'
