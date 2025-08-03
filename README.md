@@ -23,7 +23,7 @@ Seu personal stylist com Inteligência Artificial. Tire uma foto do seu look e r
 
 Já ficou em dúvida sobre o que vestir ou se seu look está combinando? Muitas pessoas passam por isso diariamente. O setor da moda é um gigante comercial, movimentando centenas de bilhões de dólares anualmente, o que demonstra a importância da aparência e do estilo no nosso dia a dia.
 
-O **VestAI** nasceu para resolver essa questão, atuando como seu personal stylist de bolso. Utilizando o poder da IA do Google Gemini, nosso aplicativo analisa uma foto do seu look e fornece dicas e sugestões personalizadas para você se vestir com mais confiança e estilo.
+O **Veste AI** nasceu para resolver essa questão, atuando como seu personal stylist de bolso. Utilizando o poder da IA do Google Gemini, nosso aplicativo analisa uma foto do seu look e fornece dicas e sugestões personalizadas para você se vestir com mais confiança e estilo.
 
 ---
 
