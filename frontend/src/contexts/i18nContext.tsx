@@ -21,10 +21,18 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setIsHydrated(true)
 
-    const savedLanguage = localStorage.getItem('veste-ai-language') as Language
-    const browserLanguage = navigator.language.startsWith('pt') ? 'pt' : 'en'
+    const savedLanguage = localStorage.getItem(
+      'veste-ai-language',
+    ) as Language | null
+    let initialLanguage: Language = 'pt'
 
-    const initialLanguage = savedLanguage || browserLanguage
+    if (savedLanguage === 'pt' || savedLanguage === 'en') {
+      initialLanguage = savedLanguage
+    } else {
+      const browserLanguage = navigator.language.toLowerCase()
+      initialLanguage = browserLanguage.startsWith('pt') ? 'pt' : 'en'
+    }
+
     setLanguage(initialLanguage)
   }, [])
 
