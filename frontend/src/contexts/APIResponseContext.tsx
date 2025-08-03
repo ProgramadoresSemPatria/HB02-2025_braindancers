@@ -1,12 +1,10 @@
 import { createContext, useContext, useState } from 'react'
-import type { DetectedItem } from '../types/ai-response'
 
 type APIResponse = {
-  tags: string[]
   colors: string[]
   suggestion: string
   why: string
-  detectedItems: DetectedItem[]
+  identified_clothes: string[]
 }
 
 type ContextType = {

@@ -1,18 +1,12 @@
-export interface DetectedItem {
-  name: string
-  confidence: number
-  category: string
-}
-
-export interface AnalysisResult {
-  detectedItems: DetectedItem[]
+export type APIResponse = {
   colors: string[]
   suggestion: string
   why: string
+  identified_clothes: string[]
 }
 
 export interface UploadResponse {
   success: boolean
-  data?: AnalysisResult
+  data?: APIResponse
   error?: string
 }
