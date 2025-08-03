@@ -28,6 +28,11 @@ func (ctrl *UploadController) HandleUpload(c *gin.Context) {
 		return
 	}
 
+	language := c.PostForm("language")
+	if language != "pt" {
+		language = "en"
+	}
+
 	openedFile, err := fileHeader.Open()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not open uploaded file: " + err.Error()})
@@ -41,7 +46,12 @@ func (ctrl *UploadController) HandleUpload(c *gin.Context) {
 		return
 	}
 
-	fashionResponse, err := ctrl.FashionAnalysisService.AnalyzeFashionImage(c.Request.Context(), imageData, ctrl.GeminiAPIKey)
+	fashionResponse, err := ctrl.FashionAnalysisService.AnalyzeFashionImage(
+		c.Request.Context(),
+		imageData,
+		ctrl.GeminiAPIKey,
+		language,
+	)
 	if err != nil {
 		log.Printf("❌ Fashion Analysis Error: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Fashion analysis error: " + err.Error()})

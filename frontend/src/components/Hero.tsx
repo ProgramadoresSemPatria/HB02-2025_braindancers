@@ -4,7 +4,7 @@ import { Camera, Sparkles, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function Hero() {
-  const { t } = useI18n()
+  const { t, language } = useI18n()
 
   return (
     <section>
@@ -25,8 +25,8 @@ export function Hero() {
             <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto font-light">
               {t.home.description}
             </p>
-
-            <Link to="/upload">
+ 
+            <Link to={`/upload?lang=${language}`}>
               <button
                 type="button"
                 className="inline-flex items-center space-x-3 px-8 py-4 cursor-pointer bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all"
