@@ -100,7 +100,7 @@ Este projeto foi idealizado e construído por:
     </td>
     <td align="center">
       <a href="https://github.com/vandilsonbrito" title="Vandilson Brito">
-        <img src="https://avatars3.githubusercontent.com/u/83407152" width="100px;" alt="Vandilson Brito"/><br>
+        <img src="https://avatars.githubusercontent.com/u/108373095?v=4" width="100px;" alt="Vandilson Brito"/><br>
         <sub><b>Vandilson Brito</b></sub>
       </a>
       <br />
