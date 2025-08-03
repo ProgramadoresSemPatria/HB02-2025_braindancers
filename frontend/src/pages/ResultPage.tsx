@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { useI18n } from '../contexts/i18nContext'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Palette, Shirt, Lightbulb, RotateCcw } from 'lucide-react'
@@ -18,7 +18,13 @@ const ResultPage: React.FC = () => {
   const handleTryAgain = () => {
     navigate('/')
   }
-  console.log('result', result)
+
+  useEffect(() => {
+    if (!result) {
+      navigate('/')
+    }
+  }, [result])
+
   useEffect(() => {
     window.scrollTo(0, 0)
 
