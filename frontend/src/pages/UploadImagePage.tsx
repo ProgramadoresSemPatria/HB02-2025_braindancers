@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// 👇 1. Import useSearchParams to read the URL
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useI18n } from '../contexts/i18nContext'
 import ImageUpload from '../components/ImageUpload'
@@ -19,6 +18,8 @@ const UploadPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [searchParams] = useSearchParams()
   const language = searchParams.get('lang') || 'en'
+
+  const API_URL = import.meta.env.VITE_API_URL
 
   const handleImageSelect = (file: File) => {
     setSelectedImage(file)
@@ -41,7 +42,7 @@ const UploadPage: React.FC = () => {
       formData.append('image', selectedImage)
       formData.append('language', language)
 
-      const response = await fetch('http://localhost:9090/upload', {
+      const response = await fetch( `${API_URL}/upload`, {
         method: 'POST',
         body: formData,
       })
