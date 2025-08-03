@@ -8,8 +8,6 @@ import (
 
 	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/controlers"
 	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/internal/config"
-	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/internal/storage/connection"
-	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/internal/storage/migrations"
 	"github.com/ProgramadoresSemPatria/HB02-2025_braindancers/services"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -28,13 +26,6 @@ func main() {
 		panic(fmt.Sprintf("Failed to load configuration: %v", err))
 	}
 
-	db, err := connection.OpenConnection()
-	if err != nil {
-		panic(err)
-	}
-
-	migrations.RunMigration(db)
-
 	geminiAPIKey := os.Getenv("GEMINI_API_KEY")
 	if geminiAPIKey == "" {
 
@@ -44,10 +35,6 @@ func main() {
 	geminiService := services.NewGeminiService()
 
 	r := gin.Default()
-	r.Use(func(c *gin.Context) {
-		c.Set("db", db)
-		c.Next()
-	})
 
 	corsOrigin := os.Getenv("CORS")
 	r.Use(cors.New(cors.Config{
